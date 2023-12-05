@@ -1,18 +1,35 @@
 #!/usr/bin/env python3
+"""Hello World Multi Linguas.
 
-## !/usr/bin/python3
+Dependendo da lingua configurada no ambiente, o programa exibe a mensagem
+correspondente.
 
-## !/usr/bin/env python3
+Como usar:
+Tenha a variável LANG devidamente configurada. Ex:
+    export LANG=pt_BR
 
-# A primeira linha é chamada de SHEBANG
-# Serve para passar informações para o SO, por exemplo, 
-# qual python será rodado.
+Execução:
+    python3 hello.py
+    ou
+    ./hello.py
+""" 
 
-# Uma alterantiva, seria colocar como está na linha 5.
-# Dessa maneira, vc força a passagem das variáveis de ambiente para o python. 
+# metadadados
+__version__ = "0.0.1"
+__author__ = "João Paulo Rolim"
+__license__ = "Unlicense" 
 
-# Este programa imprime Hello World
-print("Hello, World!")
+import os
 
-# print('João'.upper())
-# print(56 + 7)
+os_lang = os.getenv("LANG", "en_US.utf8")  # 'C.UTF-8'
+current_language = os_lang.split(".")[0]
+current_encoding = os_lang.split(".")[1]
+
+msg = f"Hello, World! - {current_language}.{current_encoding}"
+
+if current_language == "pt_BR":
+    msg = f"Olá, Mundo! - {current_language}.{current_encoding}"
+elif current_language == "it_IT":
+    msg = f"Ciao, Mondo! - {current_language}.{current_encoding}"
+
+print(msg)
