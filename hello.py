@@ -6,7 +6,7 @@ correspondente.
 
 Como usar:
 Tenha a variável LANG devidamente configurada. Ex:
-    export LANG=pt_BR
+    export LANG=pt_BR.utf8
 
 Execução:
     python3 hello.py
