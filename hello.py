@@ -15,7 +15,7 @@ Execução:
 """ 
 
 # metadadados
-__version__ = "0.0.1"
+__version__ = "0.1.2"
 __author__ = "João Paulo Rolim"
 __license__ = "Unlicense" 
 
@@ -25,11 +25,17 @@ os_lang = os.getenv("LANG", "en_US.utf8")  # 'C.UTF-8'
 current_language = os_lang.split(".")[0]
 current_encoding = os_lang.split(".")[1]
 
-msg = f"Hello, World! - {current_language}.{current_encoding}"
+msg = {
+    "en_US": "Hello, World!",
+    "pt_BR": "Olá, Mundo!",
+    "it_IT": "Ciao, Mondo!",
+    "es_SP": "Hola, Mundo!",
+    "fr_FR": "Bonjour, Monde!",
+    "C": "Olá, Mundo !!!",
+}
 
-if current_language == "pt_BR":
-    msg = f"Olá, Mundo! - {current_language}.{current_encoding}"
-elif current_language == "it_IT":
-    msg = f"Ciao, Mondo! - {current_language}.{current_encoding}"
+# Busca O(1) - constante por causa da Hash Table
+print(msg[current_language])
 
-print(msg)
+# export LANG=it_IT.utf8 
+# export LANG=C.UTF-8 
