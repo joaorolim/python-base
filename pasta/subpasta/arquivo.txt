@@ -1,0 +1,8 @@
+Rolin
+Joao
+python
+outra linha
+mais 'uma' linha
+Hello
+World!
+SENHA: 124

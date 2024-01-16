@@ -1,0 +1,4 @@
+Minha Primeira Nota	geral	Minha nota 1
+Minha Segunda Nota	tech	Python é legal!
+Minha Terceira Nota	tech	Java também é legal, né?
+Procurar Pousadas - Praia das Toninhas	ferias	Procurar quais as pousadas mais legais e com melhor custo benefício na praia das Toninhas em Ubatuba.
