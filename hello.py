@@ -32,14 +32,21 @@ arguments = {
 }
 
 for arg in sys.argv[1:]:
-    # TODO: Tratar ValueError: not enough values to unpack
-    # print(arg[2:].split("="))   
-    key, value = arg.split("=")
+    try: 
+        key, value = arg.split("=")
+    except ValueError as e:
+        # TODO: Logging
+        print(f"[ValueError] {str(e)}")
+        print("You need to use '='")
+        print(f"You passed {arg}")
+        print("Try with --key=value")
+        sys.exit(1) 
+
     key = key.lstrip("-").strip()
     value = value.strip()
     if key not in arguments:
         print(f"Invalid Option '{key}'")
-        sys.exit()
+        sys.exit(1)
     #print(f"{key}: {value}")
     arguments[key] = value
 
@@ -62,11 +69,27 @@ msg = {
 }
 
 # Busca O(1) - constante por causa da Hash Table
-if current_language not in msg:
-    print(f"Não existe msg definida para '{current_language}'.")
-    sys.exit()
+# if current_language not in msg:
+#     print(f"There's not defined message for '{current_language}'")
+#     print(f"Try with {list(msg.keys())}")
+#     sys.exit()
 
-print( msg[current_language] * int(arguments["count"]) )
+
+# Tenta... Se não conseguir, retorno valor default
+# other_message = msg.get(current_language, msg["es_SP"])
+# print(other_message)
+
+# EAFP
+try:
+    message = msg[current_language]
+except KeyError as e:
+    print(f"[KeyError] {str(e)}")
+    print(f"There's not defined message for '{current_language}'")
+    print(f"Try with {list(msg.keys())}")
+    sys.exit(1)
+
+
+print( message * int(arguments["count"]) )
 
 # export LANG=it_IT.utf8 
 # export LANG=C.UTF-8 

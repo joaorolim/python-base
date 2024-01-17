@@ -1,0 +1,5 @@
+git grep "TODO:" >> TODO.txt
+
+emails.py:    # TODO: Substituir por envio de email
+errors.py:    # TODO: Usar retry
+hello.py:    # TODO: Tratar ValueError: not enough values to unpack
