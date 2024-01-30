@@ -6,6 +6,7 @@
 
 import os
 import logging
+from logging import handlers
 
 
 
@@ -22,19 +23,30 @@ print("-" * 80)
 # TODO: usar lib externa (loguru)
 
 log_level =os.getenv("LOG_LEVEL", "WARNING").upper()
+
 # nossa instancia
 log = logging.Logger("mainLog", log_level)
+
 # level
-ch = logging.StreamHandler()  # console handler -> o StreamHandler manda para o console/terminal/stderr
-ch.setLevel(log_level)
+# ch = logging.StreamHandler()  # console handler -> o StreamHandler manda para o console/terminal/stderr
+# ch.setLevel(log_level)
+fh = handlers.RotatingFileHandler(
+    "meulog.log",  
+    maxBytes=100,    # 10**6 = 1MB
+    backupCount=10
+)
+fh.setLevel(log_level)
+
 # formatação
 fmt = logging.Formatter(
     '%(asctime)s %(name)s %(levelname)s l:%(lineno)d f:%(filename)s: %(message)s'
 )
-ch.setFormatter(fmt)
-# destino
-log.addHandler(ch)
+# ch.setFormatter(fmt)
+fh.setFormatter(fmt)
 
+# destino
+# log.addHandler(ch)
+log.addHandler(fh)
 
 log.debug("Mensagem para o DEV, QA, SYSADMIN")
 log.info("Mensagem geral para usuários")
